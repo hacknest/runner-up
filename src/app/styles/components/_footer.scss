@@ -1,0 +1,12 @@
+.c-footer {
+    bottom: 0;
+    width: 100%;
+    padding: map-get($spacing__map, large) map-get($spacing__map, large) * 2;
+}
+
+.c-footer__text {
+    text-align: center;
+    font-size: 12px;
+    font-weight: 300;
+    color: $grey-30;
+}

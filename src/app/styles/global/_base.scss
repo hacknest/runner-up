@@ -1,0 +1,32 @@
+* {
+    box-sizing: border-box !important;
+}
+
+html {
+    font-family: sans-serif;
+    letter-spacing: 1px;
+    font-weight: 300;
+    background-color: $grey-97;
+}
+
+body, html {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    min-height: 100%;
+}
+
+body {
+    padding-top: $bannerHeight;
+}
+
+h1, h2, h3, h4, h5, p, ol, ul, li {
+    color: $grey-30;
+}
+
+h2 {
+    font-size: 1.3em;
+}
+p, ol, ul {
+    font-size: 0.9em;
+}

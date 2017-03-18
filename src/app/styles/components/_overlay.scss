@@ -1,0 +1,17 @@
+.c-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100%;
+    background-color: $darkOverlayColor;
+    opacity: 1;
+    z-index: $ceil-layer;
+    transition: opacity 250ms;
+}
+
+.c-overlay.c--hidden {
+    height: 0;
+    opacity: 0;
+    transition: opacity 250ms;
+}

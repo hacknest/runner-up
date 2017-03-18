@@ -1,0 +1,30 @@
+$logoDimension: 40px;
+
+.c-header {
+    display: flex;
+    align-items: center;
+    padding: 0 map-get($spacing__map, large);
+    height: $default-bar-height;
+    background-color: inherit;
+}
+
+.c-header__logo {
+    height: $logoDimension;
+    width: $logoDimension;
+    margin-right: map-get($spacing__map, large);
+    border: none;
+    border-radius: $logoDimension/2;
+    background-color: $primaryColor;
+
+    img {
+        height: 100%;
+        width: auto;
+    }
+}
+
+.c-header__title {
+    font-family: 'Damion', cursive;
+    text-overflow: ellipsis;
+    overflow-x: hidden;
+    white-space: nowrap;
+}

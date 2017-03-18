@@ -1,0 +1,35 @@
+// Constants
+// ---
+$base-px-unit: 4px;
+$min-tap-size: 44px;
+$bannerHeight: 24px;
+$default-bar-height: 64px;
+$default-border-radius: 5px;
+
+// Colours
+// ---
+$primaryColor: rgb(224, 118, 108);
+$darkOverlayColor: hsla(0, 0%, 0%, 0.6);
+$success-color: rgb(98, 221, 180);
+$fail-color: rgb(233, 99, 99);
+
+// Neutral
+// ---
+$grey-97: hsl(0, 0%, 97%);
+$grey-85: hsl(0, 0%, 85%);
+$grey-70: hsl(0, 0%, 70%);
+$grey-50: hsl(0, 0%, 50%);
+$grey-30: hsl(0, 0%, 30%);
+
+// Margins & Padding
+// ---
+$spacing__map: (
+    small: $base-px-unit,
+    medium: $base-px-unit * 2,
+    large: $base-px-unit * 3,
+);
+
+// Layers
+// ---
+$ceil-layer: 99;
+$sky-layer: 9999;

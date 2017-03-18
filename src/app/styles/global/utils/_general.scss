@@ -1,0 +1,21 @@
+// Display
+// ---
+.u-hidden {
+    display: none !important;
+}
+
+// Dimension
+// ---
+.u-full-width {
+    width: 100%;
+}
+
+.u-half-width {
+    width: 50%;
+}
+
+// User Interaction
+// ---
+.u-no-scroll {
+    overflow: hidden !important;
+}

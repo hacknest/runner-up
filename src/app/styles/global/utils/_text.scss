@@ -1,0 +1,23 @@
+$text-sizes: (12, 14, 16, 18, 20);
+
+@each $size in $text-sizes {
+    .u-text__size-#{$size} {
+        font-size: #{$size}px;
+    }
+}
+
+.u-text__center {
+    text-align: center;
+}
+
+.u-text__weight-normal {
+    font-weight: 300;
+}
+
+.u-text__weight-heavy {
+    font-weight: 600;
+}
+
+.u-text-indent {
+    text-indent: 1.4em;
+}

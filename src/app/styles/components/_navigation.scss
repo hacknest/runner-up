@@ -1,0 +1,41 @@
+$navBtnDimension: 40px;
+
+.c-navigation {
+    position: fixed;
+    top: $bannerHeight;
+    left: 0;
+    z-index: $ceil-layer;
+}
+
+.c-navigation__toggle-button {
+    position:relative;
+    top: map-get($spacing__map, large);
+    left: map-get($spacing__map, large);
+    width: $navBtnDimension;
+    height: $navBtnDimension;
+
+    border: none;
+    border-radius: $navBtnDimension/2;
+    background-color: $primaryColor;
+
+    &:focus {
+        outline: none;
+    }
+}
+
+.c-navigation__menu {
+    padding: 0;
+    width: 300px;
+    max-width: 50vw;
+    border-top-right-radius: $default-border-radius;
+    border-bottom-right-radius: $default-border-radius;
+    list-style: none;
+    color: white;
+    background-color: $darkOverlayColor;
+}
+
+.c-navigation__menu-item {
+    height: 44px;
+    width: 100%;
+    padding: map-get($spacing__map, large);
+}

@@ -1,0 +1,22 @@
+.c-button {
+    padding: map-get($spacing__map, medium);
+    border: none;
+    border-radius: $default-border-radius;
+
+    color: white;
+    background-color: $primaryColor;
+    font-size: 1em;
+
+    &:focus {
+        outline-style: none;
+    }
+}
+
+.c-button.c--primary {
+    background-color: $primaryColor;
+}
+
+.c-button.c--full-width {
+    width: 100%;
+    max-width: 600px;
+}

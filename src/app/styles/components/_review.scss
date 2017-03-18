@@ -1,0 +1,89 @@
+.c-review-form__text-area {
+    width: 100%;
+    min-height: 100px;
+    max-height: 300px;
+    height: 25vh;
+    padding: map-get($spacing__map, medium);
+
+    border: 1px solid $grey-85;
+    border-radius: $default-border-radius;
+
+    font-size: .9em;
+
+    &:focus {
+        outline: none;
+    }
+}
+
+.c-review-form__title-input {
+    width: 100%;
+    padding: map-get($spacing__map, medium);
+    border: 1px solid $grey-85;
+    border-radius: $default-border-radius;
+
+    font-size: .9em;
+
+    &:focus {
+        outline: none;
+    }
+}
+
+.c-review-card {
+    width: 100%;
+    margin: map-get($spacing__map, large)/2 0;
+    padding: map-get($spacing__map, large);
+    border-radius: 2px;
+    background-color: white;
+}
+
+.c-review-card.c--pending {
+    outline: 1px solid $primaryColor;
+}
+
+.c-review-card__header {
+    margin: 0;
+    padding: 0 0 map-get($spacing__map, medium) 0;
+    border-bottom: 1px solid $grey-85;
+
+    letter-spacing: 0;
+    font-family: 'Droid Sans', sans-serif;
+    font-weight: 300;
+}
+
+.c-review-card__status {
+    margin: map-get($spacing__map, medium) 0;
+    color: $grey-50;
+    font-weight: 300;
+    text-align: center;
+}
+
+.c-review-card__body {
+    font-size: .8em;
+}
+
+.c-review-card__list {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+@media (min-width : 768px) {
+    .c-review-form__text-area, .c-review-form__title-input {
+        max-width: 600px;
+    }
+
+    .c-review-card__list {
+        flex-direction: row;
+        justify-content: center;
+    }
+
+    .c-review-card {
+        width: 30vw;
+        max-width: 350px;
+        margin: map-get($spacing__map, large)/2;
+    }
+}
