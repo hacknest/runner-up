@@ -5,8 +5,9 @@ import { syncHistoryWithStore } from 'react-router-redux'
 import { Router, Route, IndexRoute, IndexRedirect, hashHistory } from 'react-router'
 
 import Layout from './components/layout'
-import { Home } from './containers'
+import { Home, RouteDetailsPage } from './containers'
 import store from './store'
+
 
 const history = syncHistoryWithStore(hashHistory, store)
 
@@ -16,7 +17,7 @@ ReactDOM.render(
         <Router history={history}>
             <Route path='/' component={Layout}>
                 <IndexRoute component={Home} />
-                {/*<Route path='demo/:demoId(^[0-9]+$)' component={Demo} />*/}
+                <Route path='route/:id' component={RouteDetailsPage} />
             </Route>
         </Router>
     </Provider>
