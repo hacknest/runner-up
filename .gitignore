@@ -3,6 +3,7 @@
 .DS_Store
 
 ### Project ###
+/scripts/env.sh
 /src/client/*
 !/src/client/index.html
 !/src/client/assets/*
