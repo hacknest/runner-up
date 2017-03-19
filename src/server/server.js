@@ -1,7 +1,7 @@
 var CLIENT_DIR = `${__dirname}/../client`;
 var ROOT_DIR = `${__dirname}/../..`;
 var VENDOR_DIR = `${__dirname}/../app/js/vendor`;
-var DATABASE = require('./database');
+var POOL = require('./database');
 
 var fs = require('fs');
 var express = require('express');
@@ -70,16 +70,28 @@ app.use(function(request, response, next) {
 
 // CRUD on database
 
-app.get('/path/:id', function(request,response) {
+app.get('/path', function(request,response) {
+    var path_id = req.param('id');
+
+    POOL.query('SELECT name, difficulty, time FROM path WHERE id = $1', [path_id], 
+    function (err, res) {
+      if (err) {
+        return next(err);
+      } else if (results.rows.length === 0) {
+        return response.status(404).send();
+      }
+      console.log(response);
+      return response.status(status.OK).json(res);
+    });
 
 });
 
-app.post('/path/:id', function(request, response) {
+app.post('/path', function(request, response) {
 
 });
 
 app.get('/path/details/:id', function(request, response) {
-
+//todo
 });
 
 app.post('/path/details/:id', function(request, response) {

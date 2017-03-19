@@ -11,6 +11,15 @@ var config = {
   port: 26257
 };
 
+var Pool = pg.Pool;
+var pool = new Pool({
+  user: 'runnerup',
+  host: 'localhost',
+  database: 'Runnerdb',
+  max: 10,
+  idleTimeoutMillis: 1000
+});
+
 var populateInitialDB = function() {
 
   pg.connect(config, function (err, client, done) {
@@ -29,14 +38,15 @@ var populateInitialDB = function() {
         
         client.query("BEGIN TRANSACTION");
         client.query("DROP TABLE IF EXISTS path");
-        client.query("CREATE TABLE Path (id SERIAL PRIMARY KEY, name STRING, difficulty INT, time INTERVAL);", next);
+        client.query("CREATE TABLE path (id SERIAL PRIMARY KEY, name STRING, difficulty FLOAT, time INTERVAL," + 
+          " elevation INT, url STRING, img STRING);", next);
       },
       function (next) {
         
-        client.query("DROP TABLE IF EXISTS path_detail");
-        client.query("CREATE TABLE path_detail (id SERIAL PRIMARY KEY, info STRING, " +
-          " path INT NOT NULL CONSTRAINT pathID REFERENCES path(id), "
-          + "INDEX(path));", next);
+        client.query("INSERT INTO path (id, name, difficulty, time, elevation, url, img) VALUES "+ 
+          "(1, 'Mount Pleasant', 4.0, '2:40:00', 5, 'https://www.google.com/maps/embed?pb=!1m24!1m8!1m3!1d20830.990385480516!2d-123.2459363!3d49.2598379!3m2!1i1024!2i768!4f13.1!4m13!3e0!4m3!3m2!1d49.266027199999996!2d-123.24482049999999!4m3!3m2!1d49.266867399999995!2d-123.2403573!4m3!3m2!1d49.263638099999994!2d-123.22404429999999!5e0!3m2!1sen!2sca!4v1489887905647', 'img'), " + 
+          "(2, 'Sky Trail', 6.0, '4:45:00', 7, 'https://www.google.com/maps/embed?pb=!1m24!1m8!1m3!1d20830.990385480516!2d-123.2459363!3d49.2598379!3m2!1i1024!2i768!4f13.1!4m13!3e0!4m3!3m2!1d49.266027199999996!2d-123.24482049999999!4m3!3m2!1d49.266867399999995!2d-123.2403573!4m3!3m2!1d49.263638099999994!2d-123.22404429999999!5e0!3m2!1sen!2sca!4v1489887905647', 'img'), " + 
+          "(3, 'Spin Plaza', 6.0, '1:35:00', 4, 'https://www.google.com/maps/embed?pb=!1m24!1m8!1m3!1d20830.990385480516!2d-123.2459363!3d49.2598379!3m2!1i1024!2i768!4f13.1!4m13!3e0!4m3!3m2!1d49.266027199999996!2d-123.24482049999999!4m3!3m2!1d49.266867399999995!2d-123.2403573!4m3!3m2!1d49.263638099999994!2d-123.22404429999999!5e0!3m2!1sen!2sca!4v1489887905647', 'img')", next);
       }
     ],
     function (err, results) {
@@ -49,6 +59,7 @@ var populateInitialDB = function() {
     });
   });
 };
+
 
 function txnWrapper(client, op, next) {
   client.query('BEGIN; SAVEPOINT cockroach_restart', function (err) {
@@ -127,3 +138,5 @@ pg.connect(config, function(err, client, done) {
     });
 
 });
+
+module.exports = pool;
