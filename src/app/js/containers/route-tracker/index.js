@@ -21,8 +21,10 @@ class RouteTracker extends React.Component {
         return (
             <div id='tracker' class='u-flex-column u--center-cross'>
                 <MapView routeURL={routeURL} />
-            </div>
-        )
+                <div class="c-route-tracker__button-container u-full-width u-padding-h-large">
+                    <button class="c-route-tracker__button c-button c--primary u-full-width" onClick={() => window.history.back()}>Close</button>
+                </div>
+            </div>)
     }
 }
 
