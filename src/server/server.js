@@ -1,7 +1,6 @@
 var CLIENT_DIR = `${__dirname}/../client`;
 var ROOT_DIR = `${__dirname}/../..`;
 var VENDOR_DIR = `${__dirname}/../app/js/vendor`;
-var POOL = require('./database');
 
 var fs = require('fs');
 var express = require('express');
@@ -12,7 +11,10 @@ var port = process.env.PORT || 3000;
 var isProd = process.env.NODE_ENV === 'production';
 
 // for our routes
-const path = require('path');
+var pg = require('pg')
+
+var connectionString = process.env.DATABASE_URL || 'postgresql://root@localhost:26257?sslmode=disable';
+var client = new pg.Client(connectionString);
 
 var sendFile = function(rootDir, relPath, response, cached) {
     var options = {
@@ -70,34 +72,39 @@ app.use(function(request, response, next) {
 
 // CRUD on database
 
-app.get('/path', function(request,response) {
-    var path_id = req.param('id');
+app.get('/paths', function(request,response) {
 
-    POOL.query('SELECT name, difficulty, time FROM path WHERE id = $1', [path_id], 
-    function (err, res) {
-      if (err) {
-        return next(err);
-      } else if (results.rows.length === 0) {
-        return response.status(404).send();
-      }
-      console.log(response);
-      return response.status(status.OK).json(res);
-    });
+    try {
+        pg.connect(connectionString, function(err, client, done) {
+            if(err) {
+              done();
+              console.log(err);
+              return response.status(500).json({ success: false, data: err});
+            }
+            var query = client.query("SELECT * FROM Runnerdb.path;");
+            var results = []
+            query.on('row', function(row) {
+                console.log(row);
+                results.push(row);
+                         });
+            query.on('end', function() {
+                response.send(results);
+            });
 
+            query.on('error', function(err) {
+              console.log(err);
+              response.status(500).json({ success: false, data: err});
+              done();
+            });
+        })
+    } catch (ex) {
+        callback(ex);
+    }
 });
 
-app.post('/path', function(request, response) {
+app.post('/paths', function(request, response) {
 
 });
-
-app.get('/path/details/:id', function(request, response) {
-//todo
-});
-
-app.post('/path/details/:id', function(request, response) {
-
-});
-
 
 // Html
 app.get('/', function(request, response) {
