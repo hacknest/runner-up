@@ -46,4 +46,13 @@ $spacing-sizes: (small, medium, large);
         padding-top: map-get($spacing__map, $size);
         padding-bottom: map-get($spacing__map, $size);
     }
+
+}
+
+.#{$padding-prefix}-none {
+    padding: 0;
+}
+
+.#{$margin-prefix}-none {
+    margin: 0;
 }
