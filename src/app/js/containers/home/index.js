@@ -16,8 +16,10 @@ class Home extends React.Component {
     }
 
     render() {
-        const routes = [{name:'BADEN POWELL LYNN CANYON TO GROUSE', difficulty:5, time:'2h30m15s',distance:10, elevation:500},
+        const routes = [{name:'ABBY GRIND', difficulty:5, time:'12h30m15s',distance:10, elevation:500},
                 {name:'BRIDAL VEIL FALLS', difficulty:5, time:'2h30m15s',distance:10, elevation:500},
+                {name:'BRUNSWICK POINT', difficulty:5, time:'2h30m15s',distance:10, elevation:500},
+                {name:'BRUNSWICK POINT', difficulty:5, time:'2h30m15s',distance:10, elevation:500},
                 {name:'BRUNSWICK POINT', difficulty:5, time:'2h30m15s',distance:10, elevation:500}
         ];
         return (

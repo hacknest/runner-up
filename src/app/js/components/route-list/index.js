@@ -9,7 +9,7 @@ const RouteList = (props) => {
     })
 
     return (
-        <ul> {routeItems} </ul>
+        <div class='c-card__list'> {routeItems} </div>
     )
 }
 
