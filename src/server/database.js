@@ -40,16 +40,16 @@ var populateInitialDB = function() {
       function (next) {
         console.log("creating runner db table");
         client.query("DROP TABLE IF EXISTS Runnerdb.path");
-        client.query("CREATE TABLE IF NOT EXISTS Runnerdb.path (id SERIAL PRIMARY KEY, name STRING, difficulty FLOAT, time INTERVAL," +
+        client.query("CREATE TABLE IF NOT EXISTS Runnerdb.path (id SERIAL PRIMARY KEY, name STRING, difficulty FLOAT, time STRING," +
           " elevation INT, url STRING, img STRING);",
           next);
       },
       function (next) {
 
         client.query("INSERT INTO Runnerdb.path (id, name, difficulty, time, elevation, url, img) VALUES " +
-          "(1, 'Mount Pleasant', 4.0, '1h2m3s4ms5us6ns', 5, 'https://www.google.com/maps/embed?pb=!1m24!1m8!1m3!1d20830.990385480516!2d-123.2459363!3d49.2598379!3m2!1i1024!2i768!4f13.1!4m13!3e0!4m3!3m2!1d49.266027199999996!2d-123.24482049999999!4m3!3m2!1d49.266867399999995!2d-123.2403573!4m3!3m2!1d49.263638099999994!2d-123.22404429999999!5e0!3m2!1sen!2sca!4v1489887905647', 'img'), " +
-          "(2, 'Sky Trail', 6.0, '1h2m3s4ms5us6ns', 7, 'https://www.google.com/maps/embed?pb=!1m24!1m8!1m3!1d20830.990385480516!2d-123.2459363!3d49.2598379!3m2!1i1024!2i768!4f13.1!4m13!3e0!4m3!3m2!1d49.266027199999996!2d-123.24482049999999!4m3!3m2!1d49.266867399999995!2d-123.2403573!4m3!3m2!1d49.263638099999994!2d-123.22404429999999!5e0!3m2!1sen!2sca!4v1489887905647', 'img'), " +
-          "(3, 'Spin Plaza', 6.0, '1h2m3s4ms5us6ns', 4, 'https://www.google.com/maps/embed?pb=!1m24!1m8!1m3!1d20830.990385480516!2d-123.2459363!3d49.2598379!3m2!1i1024!2i768!4f13.1!4m13!3e0!4m3!3m2!1d49.266027199999996!2d-123.24482049999999!4m3!3m2!1d49.266867399999995!2d-123.2403573!4m3!3m2!1d49.263638099999994!2d-123.22404429999999!5e0!3m2!1sen!2sca!4v1489887905647', 'img');",
+          "(1, 'Mount Pleasant', 4.0, '1:45:3', 5, 'https://www.google.com/maps/embed?pb=!1m24!1m8!1m3!1d20830.990385480516!2d-123.2459363!3d49.2598379!3m2!1i1024!2i768!4f13.1!4m13!3e0!4m3!3m2!1d49.266027199999996!2d-123.24482049999999!4m3!3m2!1d49.266867399999995!2d-123.2403573!4m3!3m2!1d49.263638099999994!2d-123.22404429999999!5e0!3m2!1sen!2sca!4v1489887905647', 'img'), " +
+          "(2, 'Sky Trail', 6.0, '2:40:5', 7, 'https://www.google.com/maps/embed?pb=!1m24!1m8!1m3!1d20830.990385480516!2d-123.2459363!3d49.2598379!3m2!1i1024!2i768!4f13.1!4m13!3e0!4m3!3m2!1d49.266027199999996!2d-123.24482049999999!4m3!3m2!1d49.266867399999995!2d-123.2403573!4m3!3m2!1d49.263638099999994!2d-123.22404429999999!5e0!3m2!1sen!2sca!4v1489887905647', 'img'), " +
+          "(3, 'Spin Plaza', 6.0, '3:23:3', 4, 'https://www.google.com/maps/embed?pb=!1m24!1m8!1m3!1d20830.990385480516!2d-123.2459363!3d49.2598379!3m2!1i1024!2i768!4f13.1!4m13!3e0!4m3!3m2!1d49.266027199999996!2d-123.24482049999999!4m3!3m2!1d49.266867399999995!2d-123.2403573!4m3!3m2!1d49.263638099999994!2d-123.22404429999999!5e0!3m2!1sen!2sca!4v1489887905647', 'img');",
           next);
       },
       function (results, next) {
