@@ -16,15 +16,9 @@ class Home extends React.Component {
     }
 
     render() {
-        const routes = [{id:123, name:'ABBY GRIND', difficulty:5, time:'12h30m15s',distance:10, elevation:500},
-                {id:456,name:'BRIDAL VEIL FALLS', difficulty:5, time:'2h30m15s',distance:10, elevation:500},
-                {id:789,name:'BRUNSWICK POINT', difficulty:5, time:'2h30m15s',distance:10, elevation:500},
-                {id:125,name:'BRUNSWICK POINT', difficulty:5, time:'2h30m15s',distance:10, elevation:500},
-                {id:999,name:'BRUNSWICK POINT', difficulty:5, time:'2h30m15s',distance:10, elevation:500}
-        ];
         return (
             <div class='t-page u-flex-column u--center-cross'>
-                <RouteList routes={routes}/>
+                <RouteList routes={this.props.routes}/>
             </div>
         )
     }
@@ -35,6 +29,7 @@ Home.propTypes = {
 
 const mapStateToProps = function(state) {
     return {
+        routes: state.routes
     }
 }
 
