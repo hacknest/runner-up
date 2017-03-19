@@ -6,6 +6,7 @@ import { Link } from 'react-router'
 import { updateHeaderTitle } from '../header/action'
 
 import RouteList from '../../components/route-list'
+import SearchBar from '../search-bar/'
 
 class Home extends React.Component {
 
@@ -16,9 +17,17 @@ class Home extends React.Component {
     }
 
     render() {
+        const filteredRoutes = this.props.routes.filter((route) => {
+            if (this.props.searchTerm === '') {
+                return true
+            } else {
+                return route.name.toLocaleLowerCase().includes(this.props.searchTerm.toLocaleLowerCase())
+            }
+        })
         return (
             <div class='t-page u-flex-column u--center-cross'>
-                <RouteList routes={this.props.routes}/>
+                <SearchBar/>
+                <RouteList routes={filteredRoutes}/>
             </div>
         )
     }
@@ -29,7 +38,8 @@ Home.propTypes = {
 
 const mapStateToProps = function(state) {
     return {
-        routes: state.routes
+        routes: state.routes,
+        searchTerm: state.searchTerm
     }
 }
 
