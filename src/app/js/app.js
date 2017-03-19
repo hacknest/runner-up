@@ -5,7 +5,8 @@ import { syncHistoryWithStore } from 'react-router-redux'
 import { Router, Route, IndexRoute, IndexRedirect, hashHistory } from 'react-router'
 
 import Layout from './components/layout'
-import { Home, RouteDetailsPage } from './containers'
+import { Home, RouteDetailsPage, RouteTracker, MapView} from './containers'
+
 import store from './store'
 
 
@@ -18,6 +19,8 @@ ReactDOM.render(
             <Route path='/' component={Layout}>
                 <IndexRoute component={Home} />
                 <Route path='route/:id' component={RouteDetailsPage} />
+                <Route path='route/tracker/:id' component={RouteTracker} />
+
             </Route>
         </Router>
     </Provider>
