@@ -1,0 +1,31 @@
+$routeIconDimension: 50px;
+
+.c-route__detail-map-container {
+    width: 100vw;
+    height: 100vw;
+}
+
+.c-route__detail-map {
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+.c-route__detail-row-icon-container {
+    width: $routeIconDimension;
+    height: $routeIconDimension;
+    border-radius: $routeIconDimension/2;
+    overflow: hidden;
+}
+
+.c-route__detail-row-icon {
+    width: 100%;
+    height: 100%;
+}
+
+@media (min-width : 768px) {
+    .c-route__detail-map-container {
+        max-width: 500px;
+        max-height: 500px;
+    }
+}
