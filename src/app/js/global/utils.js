@@ -18,6 +18,7 @@ Utils.stringToTitleCase = function(str) {
 }
 
 Utils.starsForDifficulty = function(difficulty) {
+    const maxStars = 5
     const stars = []
     const difficultyNum = eval(difficulty)
     const difficultyInt = Math.floor(difficultyNum);
@@ -26,8 +27,11 @@ Utils.starsForDifficulty = function(difficulty) {
     for (var i = 0; i < difficultyInt; i++) {
         stars.push(<div key={i} class='u-margin-small c-icon__container'>{Icon.get({iconName: 'star', color: 'gold'})}</div>)
     }
-
     if (hasFraction) stars.push(<div key={i} class='c-icon__container'>{Icon.get({iconName: 'halfStar', color: 'gold'})}</div>)
+    for (var j = i; j < maxStars; j++) {
+        stars.push(<div key={j} class='u-margin-small c-icon__container'>{Icon.get({iconName: 'emptyStar', color: 'gold'})}</div>)
+    }
+
     return stars
 }
 

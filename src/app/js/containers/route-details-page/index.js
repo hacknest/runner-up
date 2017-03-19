@@ -67,11 +67,10 @@ class RouteDetailsPage extends React.Component {
             return null
         })
 
-        const mapSrc = 'https://www.google.com/maps/embed?pb=!1m24!1m8!1m3!1d20830.990385480516!2d-123.2459363!3d49.2598379!3m2!1i1024!2i768!4f13.1!4m13!3e0!4m3!3m2!1d49.266027199999996!2d-123.24482049999999!4m3!3m2!1d49.266867399999995!2d-123.2403573!4m3!3m2!1d49.263638099999994!2d-123.22404429999999!5e0!3m2!1sen!2sca!4v1489887905647'
         return (
             <div class='t-page u-flex-column u--center-cross'>
                 <div class='c-route__detail-map-container u-margin-v-medium'>
-                    <iframe class='c-route__detail-map u-shadow' src={mapSrc} />
+                    <iframe class='c-route__detail-map u-shadow' src={route.url} />
                 </div>
 
                 <div class="c-card u-shadow u-flex-column u--center">
