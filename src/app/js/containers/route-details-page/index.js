@@ -9,29 +9,11 @@ import Utils from '../../global/utils'
 import { updateHeaderTitle } from '../header/action'
 
 const RouteDetailRow = (props) => {
-    const starsForDifficulty = function(difficulty) {
-        const stars = []
-        const difficultyNum = eval(difficulty)
-        const difficultyInt = Math.floor(difficultyNum);
-        const hasFraction = difficultyNum%1 !== 0
-
-        for (var i = 0; i < difficultyInt; i++) {
-            stars.push(<div key={i} class='u-margin-small c-icon__container'>{Icon.get({iconName: 'star', color: 'gold'})}</div>)
-        }
-
-        if (hasFraction) stars.push(<div key={i} class='c-icon__container'>{Icon.get({iconName: 'halfStar', color: 'gold'})}</div>)
-        return stars
-    }
 
     const getImg = function() {
-        const iconNameMap = {
-            time: 'timer',
-            distance: 'distance',
-            elevation: 'elevate'
-        }
-        const iconName = iconNameMap[props.name]
+        const iconName = Utils.iconNameMap[props.name]
         if (props.name === 'difficulty') {
-            const stars = starsForDifficulty(props.value)
+            const stars = Utils.starsForDifficulty(props.value)
             return <div class='c-route__difficulty-stars u-flex-row u--center'>{stars}</div>
         } else {
             return (

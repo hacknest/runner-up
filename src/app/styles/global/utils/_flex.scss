@@ -23,4 +23,16 @@ $flex-directions: (row, column);
     .#{$flex-prefix}-#{$direction}.u--center-cross {
         align-items: center !important;
     }
+
+    .#{$flex-prefix}-#{$direction}.u--space-around {
+        justify-content: space-around !important;
+    }
+
+    .#{$flex-prefix}-#{$direction}.u--space-between {
+        justify-content: space-between !important;
+    }
+
+    .#{$flex-prefix}-#{$direction}.u--center-self {
+        align-self: center !important;
+    }
 }
