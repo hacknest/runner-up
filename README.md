@@ -33,14 +33,13 @@ npm run watch-style
 ```
 ### Developing on CockroachDB
 # Start node 1 for db file:
-cockroach start --background \
---store=dbfile
-create user
-$ cockroach user set runnerup
-create db
-$ cockroach sql -e 'CREATE DATABASE Runnerdb'
-grant privileddges to your user runnerup
-$ cockroach sql -e 'GRANT ALL ON DATABASE Runnerdb TO runnerup'
+* cockroach start --background --store=dbfile
+# create user
+* $ cockroach user set runnerup
+# create db
+* $ cockroach sql -e 'CREATE DATABASE Runnerdb'
+# grant privileddges to your user runnerup
+* $ cockroach sql -e 'GRANT ALL ON DATABASE Runnerdb TO runnerup'
 #### Production Environment
 You can run the app with production settings by executing the following command:
 ```

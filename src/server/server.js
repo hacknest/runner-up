@@ -94,7 +94,7 @@ app.use(function(request, response, next) {
 //     sendFile(VENDOR_DIR, request.params.filename, response, true);
 // });
 
-// app.use('/api', api);
+app.use('/api', api);
 
 // Start the server on port 3000
 app.listen(port, function(err) {
