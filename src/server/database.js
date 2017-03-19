@@ -11,15 +11,6 @@ var config = {
   port: 26257
 };
 
-var Pool = pg.Pool;
-var pool = new Pool({
- user: 'runnerup',
- host: 'localhost',
- database: 'Runnerdb',
- max: 10,
- idleTimeoutMillis: 1000
-});
-
 
 var populateInitialDB = function() {
   console.log('pg connecting')
@@ -76,5 +67,4 @@ var populateInitialDB = function() {
 
 populateInitialDB();
 
-module.exports = pool;
 

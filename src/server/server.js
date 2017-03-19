@@ -103,7 +103,36 @@ app.get('/paths', function(request,response) {
 });
 
 app.post('/paths', function(request, response) {
+    try {
+        var data = {
+            
+            name: request.body.name,
+            difficulty: request.body.difficulty,
+            time: request.body.time,
+            elevation: request.body.elevation,
+            url: request.body.url,
+            img: request.body.img
+        }
 
+        pg.connect(connectionString, function(err, client, done) {
+            if(err) {
+              done();
+              console.log(err);
+              return response.status(500).json({ success: false, data: err});
+            }
+            client.query("INSERT INTO Runnerdb.path (id, name, difficulty, time, elevation, url, img) " +
+                "VALUES (DEFAULT, $1, $2, $3, $4, $5, $6);", [data.name, data.difficulty, data.time, data.elevation, data.url, data.img], 
+                function (err, result) {
+                    done();
+                    response.send();
+                    if (err) {
+                  return console.error('error happened during query', err)
+                }
+                });
+        });
+    } catch (ex) {
+        callback(ex);
+    }
 });
 
 // Html
