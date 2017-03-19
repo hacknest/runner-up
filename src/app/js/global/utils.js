@@ -29,7 +29,7 @@ Utils.starsForDifficulty = function(difficulty) {
     }
     if (hasFraction) stars.push(<div key={i} class='c-icon__container'>{Icon.get({iconName: 'halfStar', color: 'gold'})}</div>)
     for (var j = i; j < maxStars; j++) {
-        stars.push(<div key={j} class='u-margin-small c-icon__container'>{Icon.get({iconName: 'emptyStar', color: 'gold'})}</div>)
+        stars.push(<div key={j+1} class='u-margin-small c-icon__container'>{Icon.get({iconName: 'emptyStar', color: 'gold'})}</div>)
     }
 
     return stars

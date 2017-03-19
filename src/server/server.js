@@ -4,6 +4,7 @@ var VENDOR_DIR = `${__dirname}/../app/js/vendor`;
 
 var fs = require('fs');
 var express = require('express');
+var bodyParser = require('body-parser');
 
 var api = require('./api/routes.js');
 var app = express();
@@ -78,13 +79,13 @@ app.get('/paths', function(request,response) {
         pg.connect(connectionString, function(err, client, done) {
             if(err) {
               done();
-              console.log(err);
+              // console.log(err);
               return response.status(500).json({ success: false, data: err});
             }
             var query = client.query("SELECT * FROM Runnerdb.path;");
             var results = []
             query.on('row', function(row) {
-                console.log(row);
+                // console.log(row);
                 results.push(row);
                          });
             query.on('end', function() {
@@ -92,26 +93,27 @@ app.get('/paths', function(request,response) {
             });
 
             query.on('error', function(err) {
-              console.log(err);
+              // console.log(err);
               response.status(500).json({ success: false, data: err});
               done();
             });
         })
     } catch (ex) {
-        callback(ex);
+        console.log(ex);
     }
 });
 
-app.post('/paths', function(request, response) {
+app.post('/paths', bodyParser.json(), function(request, response) {
     try {
         var data = {
-            
+            id: request.body.id,
             name: request.body.name,
+            distance : request.body.distance,
             difficulty: request.body.difficulty,
             time: request.body.time,
             elevation: request.body.elevation,
-            url: request.body.url,
-            img: request.body.img
+            img: request.body.img,
+            url: request.body.url
         }
 
         pg.connect(connectionString, function(err, client, done) {
@@ -120,18 +122,23 @@ app.post('/paths', function(request, response) {
               console.log(err);
               return response.status(500).json({ success: false, data: err});
             }
-            client.query("INSERT INTO Runnerdb.path (id, name, difficulty, time, elevation, url, img) " +
-                "VALUES (DEFAULT, $1, $2, $3, $4, $5, $6);", [data.name, data.difficulty, data.time, data.elevation, data.url, data.img], 
+            var randomID = Math.floor(Math.random() * 1000);
+            var insertSQL = 'INSERT INTO Runnerdb.path (id, name, difficulty, time, elevation, distance, url, img) VALUES ' +
+                `(${data.id}, '${data.name}', ${data.difficulty}, '${data.time}', '${data.elevation}', '${data.distance}', '${data.url}', '${data.img}');`;
+                // console.log(insertSQL);
+            client.query(insertSQL,
                 function (err, result) {
-                    done();
-                    response.send();
                     if (err) {
-                  return console.error('error happened during query', err)
-                }
-                });
+                        console.log('error happened during query', err)
+                    } else {
+                        console.log(result)
+                        done();
+                        response.send(result);
+                    }
+            });
         });
     } catch (ex) {
-        callback(ex);
+        console.log(ex);
     }
 });
 

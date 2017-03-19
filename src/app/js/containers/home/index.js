@@ -27,6 +27,9 @@ class Home extends React.Component {
         return (
             <div class='t-page u-flex-column u--center-cross'>
                 <SearchBar/>
+                <Link class='u-full-width' to={`/plan/1`}>
+                    <button class="c-button c--primary u-margin-v-large u-full-width"> CREATE </button>
+                </Link>
                 <RouteList routes={filteredRoutes}/>
             </div>
         )
