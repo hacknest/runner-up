@@ -11,6 +11,9 @@ var app = express();
 var port = process.env.PORT || 3000;
 var isProd = process.env.NODE_ENV === 'production';
 
+// for our routes
+const path = require('path');
+
 var sendFile = function(rootDir, relPath, response, cached) {
     var options = {
         root: rootDir
@@ -64,6 +67,25 @@ app.use(function(request, response, next) {
 
 // GET
 // ---
+
+// CRUD on database
+
+app.get('/path/:id', function(request,response) {
+
+});
+
+app.post('/path/:id', function(request, response) {
+
+});
+
+app.get('/path/details/:id', function(request, response) {
+
+});
+
+app.post('/path/details/:id', function(request, response) {
+
+});
+
 
 // Html
 app.get('/', function(request, response) {
