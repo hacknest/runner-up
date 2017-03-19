@@ -32,8 +32,8 @@ const RouteListCard = ({route}) => {
         <Link to={`route/${route.id}`}>
             <div class='c-card u-shadow u-flex-row'>
                 <div class='u-margin-h-small'>
-                    <div>
-                        <img src='http://placehold.it/90x90'></img>
+                    <div class='c-card__thumbnail-container'>
+                        <img class='c-card__thumbnail' src={route.img}></img>
                     </div>
                 </div>
                 <div class='u-flex-column u-margin-h-small u-full-width'>

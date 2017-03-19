@@ -26,9 +26,19 @@ $routeIconDimension: 30px;
 .c-route__detail-row {
 }
 
+.c-card__thumbnail-container {
+    width: 90px;
+    height: 90px;
+}
+
+.c-card__thumbnail {
+    width: 100%;
+    height: auto;
+}
 @media (min-width : 768px) {
     .c-route__detail-map-container {
         max-width: 500px;
         max-height: 500px;
     }
 }
+
