@@ -14,12 +14,17 @@ In order to compile the files to obtain distribution-ready `.css` and `.js` file
 ### Running
 If you are running the app for the first time, and the client `.css` and `.js` files have not been built yet, you may be required to run:
 ```
-npm install && npm run build
+npm install && npm run build && npm run db-init
 ```
 
 To run the app, execute the following command in your terminal at the project ROOT:
 ```
 npm start
+```
+
+To start populate the database, open a new tab and execute the following command:
+```
+npm run populate-db
 ```
 
 Head over to your browser and open up `localhost:3000` to view the app.
@@ -31,15 +36,7 @@ You can enable hot loading style changes with the following command:
 ```
 npm run watch-style
 ```
-### Developing on CockroachDB
-#### Start node 1 for db file:
-* cockroach start --background --store=dbfile
-#### create user
-* $ cockroach user set runnerup
-#### create db
-* $ cockroach sql -e 'CREATE DATABASE Runnerdb'
-#### grant privileddges to your user runnerup
-* $ cockroach sql -e 'GRANT ALL ON DATABASE Runnerdb TO runnerup'
+
 #### Production Environment
 You can run the app with production settings by executing the following command:
 ```

@@ -10,7 +10,9 @@
   "scripts": {
     "build": "./scripts/build.sh",
     "start": "node ./src/server/server.js",
-    "style-watch": "sass --watch src/app/styles/styles.scss:src/client/styles.css"
+    "style-watch": "sass --watch src/app/styles/styles.scss:src/client/styles.css",
+    "db-init": "./scripts/database.sh",
+    "populate-db": "node src/server/database.js"
   },
   "dependencies": {
     "babel-polyfill": "^6.23.0",
