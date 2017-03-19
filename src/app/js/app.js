@@ -19,9 +19,8 @@ ReactDOM.render(
             <Route path='/' component={Layout}>
                 <IndexRoute component={Home} />
                 <Route path='route/:id' component={RouteDetailsPage} />
-                <Route path='route/tracker/:id' component={RouteTracker} />
-
             </Route>
+            <Route path='route/tracker/:id' component={RouteTracker} />
         </Router>
     </Provider>
 , document.getElementById('app'))

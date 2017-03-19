@@ -23,8 +23,7 @@ class RouteTracker extends React.Component {
             }
         }
         return (
-            <div class='t-page u-flex-column u--center-cross'>
-                RouteTracker
+            <div id='tracker' class='u-flex-column u--center-cross'>
                 <MapView routeURL={routeURL} />
             </div>
         )
