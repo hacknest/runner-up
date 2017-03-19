@@ -3,6 +3,8 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { Link } from 'react-router'
 import Icon from '../../global/icon'
+import Utils from '../../global/utils'
+
 
 import { updateHeaderTitle } from '../header/action'
 
@@ -10,38 +12,46 @@ const RouteDetailRow = (props) => {
     const starsForDifficulty = function(difficulty) {
         const stars = []
         const difficultyNum = eval(difficulty)
+        const difficultyInt = Math.floor(difficultyNum);
         const hasFraction = difficultyNum%1 !== 0
 
-        console.log(hasFraction)
-        for (var i = 0; i < difficultyNum - 1; ++i) {
-            stars.push(<div key={i}>{Icon.star()}</div>)
+        for (var i = 0; i < difficultyInt; i++) {
+            stars.push(<div key={i} class='u-margin-small c-icon__container'>{Icon.get({iconName: 'star', color: 'gold'})}</div>)
         }
 
-        if (hasFraction) stars.push(<div key={i}>{Icon.halfStar()}</div>)
-        console.log(stars)
+        if (hasFraction) stars.push(<div key={i} class='c-icon__container'>{Icon.get({iconName: 'halfStar', color: 'gold'})}</div>)
         return stars
     }
 
     const getImg = function() {
+        const iconNameMap = {
+            time: 'timer',
+            distance: 'road'
+        }
+        const iconName = iconNameMap[props.name]
         if (props.name === 'difficulty') {
             const stars = starsForDifficulty(props.value)
-            console.log(stars)
-            return <div class='c-route__difficulty-stars'>{stars}</div>
+            return <div class='c-route__difficulty-stars u-flex-row u--center'>{stars}</div>
         } else {
             return (
                 <div class='c-route__detail-row-icon-container u-margin-right-large'>
-                    <img class='c-route__detail-row-icon' src={props.iconSrc || "http://placehold.it/50x50"} />
+                    {Icon.get({iconName})}
                 </div>
             )
         }
     }
 
+    const isDifficultyRow = (props.name === 'difficulty')
     return (
         <div class='u-flex-row u--center-cross u-full-width u-margin-v-medium'>
-                {getImg()}
-            <div class='c-route__detail-row__details u-flex-row'>
-                <p class='c-route__detail-row__details-text'>{props.name}</p>
-                <p class='c-route__detail-row__details-text'>{props.value}</p>
+
+            {isDifficultyRow ? '' : getImg()}
+            <div class='c-route__detail-row__details u-flex-row u-full-width u--center-cross'>
+                <p class='c-route__detail-row__details-text u-grow u-margin-none'>{Utils.stringToTitleCase(props.name)}</p>
+                {isDifficultyRow
+                    ? getImg()
+                    : <p class='c-route__detail-row__details-text'>{props.value}</p>
+                }
             </div>
         </div>
     )
@@ -53,6 +63,11 @@ class RouteDetailsPage extends React.Component {
         this.props.updateHeaderTitle(title)
     }
 
+    getRouteFromState() {
+        const matches = this.props.routes.filter(obj => obj.id == this.props.params.id)
+        return matches.length > 0 ? matches[0] : undefined
+    }
+
     render() {
         const defaultRoute = {
             name: 'Tested Route',
@@ -61,42 +76,42 @@ class RouteDetailsPage extends React.Component {
             distance: '2km',
             elevation: '900m',
         }
-        const detailRows = Object.keys(defaultRoute).map((key, index) => {
-            if (key === 'name' || key === 'difficulty' ) return null;
-            return <RouteDetailRow key={index} name={key} value={defaultRoute[key]} iconSrc={null} />
-        })
+        const route = this.getRouteFromState() || defaultRoute
 
-        console.log(detailRows)
+        const detailRows = Object.keys(route).map((key, index) => {
+            if (key === 'name' || key === 'difficulty' || key === 'id' ) return null;
+            return <RouteDetailRow key={index} name={key} value={route[key]} iconSrc={null} />
+        })
 
         const mapSrc = 'https://www.google.com/maps/embed?pb=!1m24!1m8!1m3!1d20830.990385480516!2d-123.2459363!3d49.2598379!3m2!1i1024!2i768!4f13.1!4m13!3e0!4m3!3m2!1d49.266027199999996!2d-123.24482049999999!4m3!3m2!1d49.266867399999995!2d-123.2403573!4m3!3m2!1d49.263638099999994!2d-123.22404429999999!5e0!3m2!1sen!2sca!4v1489887905647'
         return (
             <div class='t-page u-flex-column u--center-cross'>
                 <div class='c-route__detail-map-container'>
-                    {/*<img class='u-full-width' src={'http://placehold.it/500x500'} />*/}
                     <iframe class='c-route__detail-map u-shadow' src={mapSrc} />
                 </div>
 
-                {/* Details */}
                 <div class="c-card u-shadow u-flex-column u--center">
-                    <RouteDetailRow name={'difficulty'} value={defaultRoute['difficulty']} />
+                    <RouteDetailRow name={'difficulty'} value={route['difficulty']} />
                 </div>
 
                 <div class="c-card u-shadow u-flex-column u--center">
                     {detailRows}
                 </div>
-                <div>
-                    <button class="c-button c--primary u-full-width"> START </button>
-                </div>
+                <Link class='u-full-width' to={`/route/tracker/${this.props.params.id}`}>
+                    <button class="c-button c--primary u-margin-v-large u-full-width"> START </button>
+                </Link>
             </div>
         )
     }
 }
 
 RouteDetailsPage.propTypes = {
+    route: PropTypes.object
 }
 
 const mapStateToProps = function(state) {
     return {
+        routes: state.routes
     }
 }
 
