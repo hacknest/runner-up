@@ -27,12 +27,10 @@ const RouteListCard = ({route}) => {
                     <div>
                         <span class='u-text__weight-heavy'>Distance: </span>
                         <span>{route.distance}</span>
-                        <span>km</span>
                     </div>
                     <div>
                         <span class='u-text__weight-heavy'>Elevation: </span>
                         <span>{route.elevation}</span>
-                        <span>m</span>
                     </div>
                 </div>
             </div>
