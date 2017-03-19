@@ -5,7 +5,6 @@ import React, {PropTypes, Component} from 'react';
 import shouldPureComponentUpdate from 'react-pure-render/function';
 
 import GoogleMap from 'google-map-react';
-import MyGreatPlace from './my_great_place.js';
 
 
 class MapView extends Component {
