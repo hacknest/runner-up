@@ -65,11 +65,6 @@ app.use(function(request, response, next) {
 // GET
 // ---
 
-// // Fallback Demo
-// app.get('/surprise', function(request, response) {
-//     sendFile(CLIENT_DIR, `/assets/surprise.gif`, response, false);
-// });
-
 // Html
 app.get('/', function(request, response) {
     sendFile(CLIENT_DIR, 'index.html', response, true);
@@ -84,25 +79,6 @@ app.get('/:filename(client.js|styles.css)', function(request, response) {
 app.get('/assets/:filename', function(request, response) {
     sendFile(CLIENT_DIR, request.url, response, true);
 });
-
-// // Client Files
-// app.get('/:filename(client.js|styles.css|fallback.html|sw.js)', function(request, response) {
-//     const cached = request.params.filename === 'sw.js' ? false : true;
-//     sendFile(CLIENT_DIR, request.url, response, cached);
-// });
-
-// app.get('/assets/:filename', function(request, response) {
-//     sendFile(CLIENT_DIR, request.url, response, true);
-// });
-
-// app.get('/assets/uncached/:filename', function(request, response) {
-//     sendFile(CLIENT_DIR, `/assets/${request.params.filename}`, response, false);
-// });
-
-// // Vendor Files
-// app.get('*/vendor/:filename(sw-toolbox.js)', function(request, response) {
-//     sendFile(VENDOR_DIR, request.params.filename, response, true);
-// });
 
 app.use('/api', api);
 
