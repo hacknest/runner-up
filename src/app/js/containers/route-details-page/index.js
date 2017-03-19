@@ -18,25 +18,30 @@ class RouteDetailsPage extends React.Component {
                     <div> Awesome Route </div>
                     <div> Google map </div>
                 </div>
-                <div>
+                {/* Details */}
+                <div class="c-card u-shadow u-flex-column u--center">
                     <ul>
                         <div>
-                            <span> icon </span> <span> Difficulty </span> <span> Intermidiate </span>
+                            <span> icon </span>
+                            <span> Difficulty </span> <span> Intermidiate </span>
                         </div>
                         <div>
-                            <span> icon </span> <span> Time </span> <span> 1.5 hours</span>
+                            <span> icon </span>
+                            <span> Time </span> <span> 1.5 hours</span>
                         </div>
                         <div>
-                            <span> icon </span> <span> Distance </span> <span> 4 kms </span>
+                            <span> icon </span>
+                            <span> Distance </span> <span> 4 kms </span>
                         </div>
                         <div>
-                            <span> icon </span> <span> Elevation Gain </span> <span> 330 m </span>
+                            <span> icon </span>
+                            <span> Elevation Gain </span> <span> 330 m </span>
                         </div>
-
                     </ul>
                 </div>
+
                 <div>
-                    <button> START </button>
+                    <button class="c-button c--primary"> START </button>
                 </div>
             </div>
         )

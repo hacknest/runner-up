@@ -1,4 +1,4 @@
-.c-blog-card {
+.c-card {
     width: 100%;
     margin: map-get($spacing__map, large)/2 0;
     padding: map-get($spacing__map, large);
@@ -6,7 +6,7 @@
     background-color: white;
 }
 
-.c-blog-card__header {
+.c-card__header {
     margin: 0;
     padding: 0 0 map-get($spacing__map, medium) 0;
     border-bottom: 1px solid $grey-85;
@@ -16,17 +16,17 @@
     font-weight: 300;
 }
 
-.c-blog-card__sub-header {
+.c-card__sub-header {
     margin: map-get($spacing__map, medium) 0;
     color: $grey-50;
     font-weight: 300;
 }
 
-.c-blog-card__body {
+.c-card__body {
     font-size: .8em;
 }
 
-.c-blog-card__list {
+.c-card__list {
     display: flex;
     flex-direction: column;
     width: 100%;
@@ -37,12 +37,12 @@
 }
 
 @media (min-width : 768px) {
-    .c-blog-card__list {
+    .c-card__list {
         flex-direction: row;
         justify-content: center;
     }
 
-    .c-blog-card {
+    .c-card {
         width: 30vw;
         max-width: 350px;
         margin: map-get($spacing__map, large)/2;
