@@ -26,7 +26,8 @@ const RouteDetailRow = (props) => {
     const getImg = function() {
         const iconNameMap = {
             time: 'timer',
-            distance: 'road'
+            distance: 'distance',
+            elevation: 'elevate'
         }
         const iconName = iconNameMap[props.name]
         if (props.name === 'difficulty') {
@@ -35,7 +36,7 @@ const RouteDetailRow = (props) => {
         } else {
             return (
                 <div class='c-route__detail-row-icon-container u-margin-right-large'>
-                    {Icon.get({iconName})}
+                    {Icon.get({iconName, color: 'light'})}
                 </div>
             )
         }
@@ -43,14 +44,14 @@ const RouteDetailRow = (props) => {
 
     const isDifficultyRow = (props.name === 'difficulty')
     return (
-        <div class='u-flex-row u--center-cross u-full-width u-margin-v-medium'>
+        <div class='c-route__detail-row u-flex-row u--center-cross u-full-width u-margin-v-medium'>
 
             {isDifficultyRow ? '' : getImg()}
             <div class='c-route__detail-row__details u-flex-row u-full-width u--center-cross'>
                 <p class='c-route__detail-row__details-text u-grow u-margin-none'>{Utils.stringToTitleCase(props.name)}</p>
                 {isDifficultyRow
                     ? getImg()
-                    : <p class='c-route__detail-row__details-text'>{props.value}</p>
+                    : <p class='c-route__detail-row__details-text u-text-light'>{props.value}</p>
                 }
             </div>
         </div>
@@ -59,7 +60,8 @@ const RouteDetailRow = (props) => {
 
 class RouteDetailsPage extends React.Component {
     componentWillMount() {
-        const title = 'Runner Up'
+        const route = this.getRouteFromState() || {}
+        const title = route.name || 'Unkown Route'
         this.props.updateHeaderTitle(title)
     }
 
@@ -79,14 +81,14 @@ class RouteDetailsPage extends React.Component {
         const route = this.getRouteFromState() || defaultRoute
 
         const detailRows = Object.keys(route).map((key, index) => {
-            if (key === 'name' || key === 'difficulty' || key === 'id' ) return null;
-            return <RouteDetailRow key={index} name={key} value={route[key]} iconSrc={null} />
+            if (key === 'time' || key === 'distance' || key === 'elevation' ) return <RouteDetailRow key={index} name={key} value={route[key]} iconSrc={null} />
+            return null
         })
 
         const mapSrc = 'https://www.google.com/maps/embed?pb=!1m24!1m8!1m3!1d20830.990385480516!2d-123.2459363!3d49.2598379!3m2!1i1024!2i768!4f13.1!4m13!3e0!4m3!3m2!1d49.266027199999996!2d-123.24482049999999!4m3!3m2!1d49.266867399999995!2d-123.2403573!4m3!3m2!1d49.263638099999994!2d-123.22404429999999!5e0!3m2!1sen!2sca!4v1489887905647'
         return (
             <div class='t-page u-flex-column u--center-cross'>
-                <div class='c-route__detail-map-container'>
+                <div class='c-route__detail-map-container u-margin-v-medium'>
                     <iframe class='c-route__detail-map u-shadow' src={mapSrc} />
                 </div>
 

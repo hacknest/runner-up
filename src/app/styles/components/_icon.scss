@@ -7,6 +7,10 @@ $default-icon-dimension: 20px;
     &.c--gold-color {
         fill: $gold-color;
     }
+
+    &.c--light-color {
+        fill: $grey-50;
+    }
 }
 
 .c-icon__container {
