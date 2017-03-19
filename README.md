@@ -32,13 +32,13 @@ You can enable hot loading style changes with the following command:
 npm run watch-style
 ```
 ### Developing on CockroachDB
-# Start node 1 for db file:
+#### Start node 1 for db file:
 * cockroach start --background --store=dbfile
-# create user
+#### create user
 * $ cockroach user set runnerup
-# create db
+#### create db
 * $ cockroach sql -e 'CREATE DATABASE Runnerdb'
-# grant privileddges to your user runnerup
+#### grant privileddges to your user runnerup
 * $ cockroach sql -e 'GRANT ALL ON DATABASE Runnerdb TO runnerup'
 #### Production Environment
 You can run the app with production settings by executing the following command:
